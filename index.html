@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeaMuda - Temukan Peluang, Raih Masa Depan</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="BeaMuda" class="logo-img" onclick="showPage('main')">
+        
+        <div id="nav-container">
+            <button class="btn-auth" id="login-nav-btn" onclick="showPage('login')">Masuk / Daftar</button>
+            
+            <div class="user-nav" id="user-dropdown" style="display: none;">
+                <button class="user-btn"><span id="user-display-name">Akun</span> ▼</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="showSaved()">Beasiswa Tersimpan</a>
+                    <a href="#" onclick="logout()" style="color: #d9534f; border-top: 1px solid #eee;">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-page">
+        <section class="hero">
+        <div class="hero-content">
+            <h1>Selamat datang di <br><span class="bea">Bea</span><span class="muda">Muda</span></h1>
+            <p>Satu tempat untuk menemukan berbagai informasi beasiswa terbaik untukmu</p>
+            
+            <div class="hero-features">
+                <div class="feature-item">
+                    <img src="informasiterpercaya.png" alt="Info">
+                    Informasi Terpercaya
+                </div>
+                <div class="feature-item">
+                    <img src="beragampilihan.png" alt="Pilihan">
+                    Beragam Pilihan
+                </div>
+                <div class="feature-item">
+                    <img src="peluangsemua.png" alt="Peluang">
+                    Peluang untuk Semua
+                </div>
+            </div>
+        </div>
+        <div class="hero-illustration">
+            <img src="ilustrasi.png" alt="Ilustrasi BeaMuda">
+        </div>
+    </section>
+
+        <div class="search-section">
+            <div class="search-header">
+                <h2>Temukan Beasiswa Untukmu</h2>
+                <p>Cari Beasiswa berdasarkan minat, jenjang, atau negara tujuan</p>
+            </div>
+            <div class="search-bar">
+                <div class="input-group">
+                    <input type="text" id="search-input" placeholder="Cari nama beasiswa...">
+                </div>
+                <div class="input-group">
+                    <select id="level-select">
+                        <option value="">Semua Jenjang</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <select id="country-select">
+                        <option value="">Semua Negara</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Jepang">Jepang</option>
+                        <option value="Korea Selatan">Korea Selatan</option>
+                        <option value="Inggris">Inggris</option>
+                    </select>
+                </div>
+                <button class="btn-search" onclick="filterScholarships()">Cari Beasiswa</button>
+            </div>
+        </div>
+
+        <section class="grid-beasiswa" id="scholarship-grid"></section>
+    </main>
+
+    <section id="saved-page">
+        <h2 style="margin-bottom: 20px; color: var(--bea-blue);">Beasiswa Tersimpan</h2>
+        <div class="grid-beasiswa" id="saved-grid"></div>
+        <button class="btn-search" onclick="showPage('main')" style="background: gray; padding: 10px">Kembali</button>
+    </section>
+
+    <section id="login-page" class="auth-page">
+        <div class="auth-container">
+            <div class="auth-form">
+                <h2 style="margin-bottom: 10px; text-align: center;letter-spacing: 1px">Selamat Datang Kembali</h2>
+                <p style="margin-bottom: 30px;margin-top: -10px; text-align: center; font-size: 14px;">Masuk dengan akun kamu yang sudah terdaftar</p>
+                <input type="email" id="login-email" placeholder="Email Address">
+                <input type="password" id="login-password" placeholder="Password">
+                <button class="btn-search" style="width:100%; padding: 10px;" onclick="handleLogin()">Masuk</button>
+                 <p style="text-align:center; margin-top:20px; font-size:14px;">Belum punya akun? <span style="color:var(--bea-blue); font-weight:bold; cursor:pointer;" onclick="showPage('signup')">Daftar</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="signup-page" class="auth-page">
+        <div class="auth-container">
+            <div class="auth-form">
+                 <h2 style="margin-bottom: 10px; text-align: center;letter-spacing: 1px">Daftar Akun</h2><br>
+                <input type="text" id="reg-nama" placeholder="Full Name">
+                <input type="email" id="reg-email" placeholder="Email Address">
+                <input type="password" id="reg-password" placeholder="Password">
+                <button class="btn-search" style="width:100%; padding: 10px; background:var(--bea-blue); color:white;" onclick="handleRegister()">Buat Akun</button>
+                <p style="text-align:center; margin-top:20px; font-size:14px;" onclick="showPage('login')">Sudah punya akun? <span style="color:var(--bea-blue); font-weight:bold; cursor:pointer;">Masuk</span></p>
+            </div>
+        </div>
+    </section>
+
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span style="float:right; cursor:pointer; font-size:24px;" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
